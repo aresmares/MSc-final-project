@@ -1,0 +1,2 @@
+conda activate prj
+cd "C:\Users\Ares Agourides\Desktop\PRJ-PARKING\test2\unity2019\AutonomousParkingMLUnity-master\python"
