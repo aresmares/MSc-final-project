@@ -63,7 +63,8 @@ public class FullAgentSimulationManager : MonoBehaviour
 
       ParkingLot randomSpot = GetRandomEmptyParkingSlot();
       randomSpot.IsGoal = true;
-      Debug.Log(randomSpot.name);
+      // Debug.Log(randomSpot.name);
+      // new FullAgentControl(); 
 
       _initComplete = true;
       

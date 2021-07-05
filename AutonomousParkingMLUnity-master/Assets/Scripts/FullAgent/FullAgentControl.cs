@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
@@ -11,7 +11,7 @@ using Unity.Barracuda;
 [RequireComponent(typeof(Rigidbody))]
 // [RequireComponent(typeof(SimulationManager))]
 
-public class AutoParkAgent : Agent
+public class FullAgentControl : Agent
 {
     private Rigidbody _rigitBody;
     private CarController _controller;
@@ -46,17 +46,9 @@ public class AutoParkAgent : Agent
         _controller.CurrentAcceleration = vectorAction[1];
         _controller.CurrentBrakeTorque = vectorAction[2];
 
-        // Apply Fuzzy rewards per action taken
-        if (_nearestLot != null)
-        {
-            float fuzzyAlignment = _rewards.FuzzyDistanceAlignmentReward(gameObject,_nearestLot);
-            float fuzzyAcceleration = _rewards.FuzzyDistanceAccelerationReward(gameObject,_nearestLot);
-            _rewards.FuzzyVelocityReward(gameObject,_nearestLot);
-            AddReward(fuzzyAlignment);
-            AddReward(fuzzyAcceleration);
-        }
-        // Debug.Log(fuzzyAlignment + " , " + fuzzyAcceleration);
-
+        // // Apply Fuzzy rewards per action taken
+        // AddReward(_rewards.FuzzyDistanceAlignmentReward(gameObject,_nearestLot));
+        // AddReward(_rewards.FuzzyDistanceAccelerationReward(gameObject,_nearestLot));
 
     }
 
@@ -82,8 +74,6 @@ public class AutoParkAgent : Agent
     {
         if (_lastActions != null && _simulationManager.InitComplete)
         {
-            // if(_nearestLot == null)
-            //     _nearestLot = _simulationManager.GetRandomEmptyParkingSlot();
             _nearestLot = GameObject.Find("EndPosition");
             Vector3 dirToTarget = (_nearestLot.transform.position - transform.position).normalized;
             sensor.AddObservation(transform.position.normalized);
@@ -92,14 +82,6 @@ public class AutoParkAgent : Agent
             sensor.AddObservation(this.transform.InverseTransformDirection(dirToTarget));
             sensor.AddObservation(transform.forward);
             sensor.AddObservation(transform.right);
-            // sensor.AddObservation(StepCount / MaxStep);
-            // float velocityAlignment = Vector3.Dot(dirToTarget, _rigitBody.velocity);
-            // Debug.Log(Vector3.Distance(_nearestLot.transform.position, _rigitBody.transform.position));
-            // Debug.Log(_controller.CurrentAcceleration);
-            // Alightnment reward
-            AddReward(
-                _rewards.VelocityAlignmentReward(dirToTarget,_rigitBody.velocity)
-                );
         }
         else
         {
@@ -107,19 +89,12 @@ public class AutoParkAgent : Agent
         }
     }
 
-    public IEnumerator JackpotReward(bool goal)
+    public IEnumerator JackpotReward(float bonus)
     {
-
-        if (goal)
-        {
-            AddReward(_rewards.EmptyLotGoal());
-        }
-        else
-        {
-            AddReward(_rewards.EmptyLot());
-
-        }
-
+        // Bonus on hitting goal
+        if(bonus > 0.2f)
+            Debug.LogWarning("Jackpot hit! " + bonus);
+        AddReward(0.2f + bonus);
         yield return new WaitForEndOfFrame();
         EndEpisode();
     }

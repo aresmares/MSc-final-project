@@ -22,8 +22,9 @@ public class NoAgentControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        endPosition = GameObject.FindGameObjectWithTag("Finish");
+        // endPosition = GameObject.FindGameObjectWithTag("Finish");
         navAgent.SetDestination(new Vector3(-2.4f,0, endPosition.transform.position.z+2 ));
+        Debug.Log(endPosition.transform.position);
 
         //     agent.SetModel();
     }

@@ -82,7 +82,7 @@ public class SimulationManager : MonoBehaviour
       }
       yield return new WaitForSeconds(1);
 
-      int total = Random.Range(15, 19);
+      int total = Random.Range(12, 19);
       for (int i = 0; i < total; i++)
       {
          ParkingLot lot = parkingLots.Where(r => r.IsOccupied == false).OrderBy(r => Guid.NewGuid()).FirstOrDefault();
@@ -99,9 +99,10 @@ public class SimulationManager : MonoBehaviour
 
       ParkingLot randomSpot = GetRandomEmptyParkingSlot();
       randomSpot.IsGoal = true;
-      Debug.Log(randomSpot.name);
+      // Debug.Log(randomSpot.name);
 
       PositionAtSafePlace(randomSpot.gameObject);
+      GameObject.Find("EndPosition").transform.position = randomSpot.transform.position;
 
       // For move to goal 
       NoAgentControl moveTo = new NoAgentControl();
@@ -126,17 +127,15 @@ public class SimulationManager : MonoBehaviour
          agent.GetComponent<CarController>().CurrentAcceleration = 0f;
          agent.GetComponent<CarController>().CurrentBrakeTorque = 0f;
 
+         Debug.Log(transform.position);
+         // Vector3 temp = 
+         // Vector3 temp = nearestLotGameObject.transform.position + new Vector3(nearestLotGameObject.transform.position-6, 0, -4);
 
-         Vector3 temp = new Vector3(agent.transform.parent.transform.position.x-2.5f , 1, nearestLotGameObject.transform.position.z+2);
-         // Vector3 temp = new Vector3(-2.4f , 1, 17);
-
-         Vector3 newPosition = temp +
-                               nearestLotGameObject.transform.right +
-                               nearestLotGameObject.transform.forward ;
-
-         agent.transform.rotation = Quaternion.Euler(0,180,0);
+         Vector3 newPosition = nearestLotGameObject.transform.TransformPoint(Random.Range(-4, -8) , 0, Random.Range(2, 6));
 
          agent.transform.position = newPosition ;
+         agent.transform.rotation = Quaternion.Euler(0,Random.Range(165, 195),0);
+
  
       }
    }

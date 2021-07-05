@@ -3200,7 +3200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2eef035adcc2546b17789d4bd567d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartPosition: {fileID: 1567302723}
   TargetPosition: {fileID: 948110044}
 --- !u!114 &777550521
 MonoBehaviour:
@@ -3259,6 +3258,7 @@ MonoBehaviour:
   - {fileID: 1070480692990391811, guid: 028d8e70063ca492eba30ebd4e34078c, type: 3}
   - {fileID: 9056386205679128064, guid: c81ef99b917f14f808c4da4e7557c2c6, type: 3}
   - {fileID: 8265640696332511961, guid: 269aa917a71474982a2160baf98ccb3b, type: 3}
+  agent: {fileID: 0}
 --- !u!1 &787599464
 GameObject:
   m_ObjectHideFlags: 0
@@ -3858,7 +3858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f33e55c74c79b3458063976373a5b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parkingLots: []
 --- !u!1 &969945349
 GameObject:
   m_ObjectHideFlags: 0
@@ -4328,6 +4327,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 808931049}
     m_Modifications:
+    - target: {fileID: 1766356590958229342, guid: e7f73706beb5dd14cb408fe5182b063e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1766356590958229342, guid: e7f73706beb5dd14cb408fe5182b063e,
         type: 3}
       propertyPath: endPosition
@@ -7105,6 +7109,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1839370663}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1842391192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4619930335136843337, guid: e7f73706beb5dd14cb408fe5182b063e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1093368759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1842391193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842391192}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155ddd5174697a147802b54769908094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endPosition: {fileID: 948110043}
+  agentPrefab: {fileID: 2369092323293914956, guid: e43555bd90b0a42db8d71fdd385969b9,
+    type: 3}
 --- !u!1 &1848302748
 GameObject:
   m_ObjectHideFlags: 0

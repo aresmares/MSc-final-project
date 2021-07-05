@@ -20,7 +20,7 @@ public class EndPositionFinder : MonoBehaviour
                if (slot.IsGoal)
                {
                     // transform.position = new Vector3(-2.4f,0, slot.transform.position.z+2 );
-                    transform.position = slot.transform.position;
+                    // transform.position = slot.transform.position;
 
                }            
             }

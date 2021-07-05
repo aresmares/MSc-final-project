@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2369092323293914953}
   - component: {fileID: 3135862361802688250}
   - component: {fileID: 6581781915845340929}
-  - component: {fileID: 5945630720824987619}
   - component: {fileID: 6499308703117433269}
   - component: {fileID: 1016273909740383454}
   m_Layer: 8
@@ -30,8 +29,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2369092323293914956}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.06, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  m_LocalPosition: {x: -2.4020355, y: -0.05, z: -7.8705525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6919345149134229909}
@@ -101,6 +100,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 5000
+  manager: {fileID: 0}
 --- !u!114 &6581781915845340929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,51 +119,12 @@ MonoBehaviour:
     VectorActionSize: 03000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 88c89b264d9ddbf47990c3a18b5052d5, type: 3}
   m_InferenceDevice: 3
   m_BehaviorType: 0
   m_BehaviorName: Autopark
   TeamId: 0
   m_UseChildSensors: 1
---- !u!114 &5945630720824987619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2369092323293914956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d12d2c5d959c44500b3ca109facc9102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parkingLots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  carPrefabs:
-  - {fileID: 8265640696332511961, guid: 269aa917a71474982a2160baf98ccb3b, type: 3}
-  - {fileID: 1070480692990391811, guid: 028d8e70063ca492eba30ebd4e34078c, type: 3}
-  - {fileID: 9056386205679128064, guid: c81ef99b917f14f808c4da4e7557c2c6, type: 3}
-  - {fileID: 8558710074590737995, guid: bfdc92263b5574f5aaf327ce94891be5, type: 3}
-  agent: {fileID: 3135862361802688250}
 --- !u!114 &6499308703117433269
 MonoBehaviour:
   m_ObjectHideFlags: 0

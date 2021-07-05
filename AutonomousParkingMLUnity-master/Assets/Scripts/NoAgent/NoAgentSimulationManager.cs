@@ -11,6 +11,7 @@ public class NoAgentSimulationManager : MonoBehaviour
    GameObject endPosition;
    [SerializeField] private List<ParkingLot> parkingLots;
    [SerializeField] private List<GameObject> carPrefabs;
+   [SerializeField] private GameObject agent;
 
    private List<GameObject> parkedCars;
    
@@ -25,6 +26,7 @@ public class NoAgentSimulationManager : MonoBehaviour
    private void Start()
    {
       parkedCars = new List<GameObject>();
+      // agent.SetActive(false);
       InitializeSimulation();
 
    }
@@ -64,6 +66,7 @@ public class NoAgentSimulationManager : MonoBehaviour
       ParkingLot randomSpot = GetRandomEmptyParkingSlot();
       randomSpot.IsGoal = true;
       Debug.Log(randomSpot.name);
+
 
       _initComplete = true;
       

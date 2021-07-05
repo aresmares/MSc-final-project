@@ -9,19 +9,24 @@ using Unity.Barracuda;
 
 [RequireComponent(typeof(CarController))]
 [RequireComponent(typeof(Rigidbody))]
+// [RequireComponent(typeof(SimulationManager))]
 
-public class FullAgentBehaviour : Agent
+public class FullAgent : Agent
 {
     private Rigidbody _rigitBody;
     private CarController _controller;
     private float[] _lastActions;
     private ParkingLot _nearestLot;
-    public GameObject _endPosition;
+
+    // public GameObject manager;
     
     public override void Initialize()
     {
         _rigitBody = GetComponent<Rigidbody>();
         _controller = GetComponent<CarController>();
+        Debug.Log("nowing");
+
+        // _simulationManager.InitializeSimulation();
     }
 
     public override void OnEpisodeBegin()
@@ -31,6 +36,7 @@ public class FullAgentBehaviour : Agent
 
     public override void OnActionReceived(float[] vectorAction)
     {
+        Debug.Log(vectorAction);
         _lastActions = vectorAction;
         _controller.CurrentSteeringAngle = vectorAction[0];
         _controller.CurrentAcceleration = vectorAction[1];
@@ -56,12 +62,18 @@ public class FullAgentBehaviour : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        if (_lastActions != null )
-        {
-            Vector3 dirToTarget = (_endPosition.transform.position - transform.position).normalized;
+                    // Debug.Log("observing");
+
+        // if (_lastActions != null && _simulationManager.InitComplete)
+        if (_lastActions != null)
+        {   
+            Debug.Log("observing");
+            // if(_nearestLot == null)
+            //     _nearestLot = _simulationManager.GetRandomEmptyParkingSlot();
+            Vector3 dirToTarget = (_nearestLot.transform.position - transform.position).normalized;
             sensor.AddObservation(transform.position.normalized);
             sensor.AddObservation(
-                this.transform.InverseTransformPoint(_endPosition.transform.position));
+                this.transform.InverseTransformPoint(_nearestLot.transform.position));
             sensor.AddObservation(
                 this.transform.InverseTransformVector(_rigitBody.velocity.normalized));
             sensor.AddObservation(

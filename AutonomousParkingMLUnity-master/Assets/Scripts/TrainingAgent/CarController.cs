@@ -39,7 +39,7 @@ public class CarController : MonoBehaviour
         float motor = maxMotorTorque * m_currentAcceleration;
         float steering = maxSteeringAngle * m_currentSteeringAngle;
         float brake = maxBrakeTorque * m_currentBrakeTorque;
-       Debug.Log(motor + "," + steering + "," + brake);
+        // Debug.Log(motor + "," + steering + "," + brake);
         foreach (AxleInfo axleInfo in axleInfos) {
             if (axleInfo.steering) {
                 axleInfo.leftWheel.steerAngle = steering;

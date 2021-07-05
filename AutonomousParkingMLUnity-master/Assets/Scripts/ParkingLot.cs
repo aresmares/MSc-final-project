@@ -14,6 +14,7 @@ public class ParkingLot : MonoBehaviour
     private void Awake()
     {
         fullEndCollider = GetComponent<Collider>();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,14 +25,15 @@ public class ParkingLot : MonoBehaviour
             {
                 if (!IsOccupied)
                 {
-                    float bonusfactor = 0.2f;
-                    float alignment = Vector3.Dot(gameObject.transform.right, other.gameObject.transform.up);
-                    if (alignment > 0)
-                        bonusfactor = 0.8f;
+                    bool goal = false;
+                    // float bonusfactor = 0.8f;
                     if (IsGoal)
-                        bonusfactor = 10*bonusfactor;
-                    float bonus = bonusfactor * Mathf.Abs(alignment);
-                    StartCoroutine( other.gameObject.transform.parent.GetComponent<AutoParkAgent>().JackpotReward(bonus));
+                    {
+                        // bonusfactor = 2 * 0.8f;
+                        goal = true;
+                    }
+
+                    StartCoroutine( other.gameObject.transform.parent.GetComponent<AutoParkAgent>().JackpotReward(goal));
                 }
             }
         }
